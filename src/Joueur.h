@@ -3,8 +3,6 @@
 
 #include <string>
 
-#include <string>
-
 class Joueur {
 private:
     std::string classe;
@@ -16,7 +14,8 @@ private:
     int bonusCritique;
 
 public:
-    Player(std::string classe);
+    Joueur();
+    Joueur(std::string classe);
     // Getters stats
     int getDefense() const;
     int getPointsDeVie() const;
@@ -24,6 +23,14 @@ public:
     int getDegatsAttaque() const;
     int getChanceCritique() const;
     int getBonusCritique() const;
+
+    void avancer();
+
+    void reculer();
+
+    void sauter();
+
+    void accroupir();
 };
 
 #endif
