@@ -1,0 +1,21 @@
+#ifndef JEU_H
+#define JEU_H
+
+#include "Joueur.h"
+#include "Donjon.h"
+
+class Jeu {
+private:
+    Donjon donjon[3];
+    Joueur joueur;
+    int numeroDonjon;
+
+public:
+    Jeu();
+    void initialiser(std::string classe);
+    std::vector<std::vector<int>> getTerrain();
+    void getDim(int &dimX, int &dimY);
+};
+
+
+#endif

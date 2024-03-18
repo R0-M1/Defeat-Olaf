@@ -25,42 +25,52 @@ Joueur::Joueur(std::string classe) : classe(classe) {
     }
 }
 
-int Player::getDefense() const {
+int Joueur::getDefense() const {
     return defense;
 }
 
-int Player::getPointsDeVie() const {
+int Joueur::getPointsDeVie() const {
     return pointsDeVie;
 }
 
-int Player::getVitesse() const {
+int Joueur::getVitesse() const {
     return vitesse;
 }
 
-int Player::getDegatsAttaque() const {
+int Joueur::getDegatsAttaque() const {
     return degatsAttaque;
 }
 
-int Player::getChanceCritique() const {
+int Joueur::getChanceCritique() const {
     return chanceCritique;
 }
 
-int Player::getBonusCritique() const {
+int Joueur::getBonusCritique() const {
     return bonusCritique;
 }
 
-void Player::avancer() {
+void Joueur::avancer() {
 
 }
 
-void Player::reculer() {
+void Joueur::reculer() {
 
 }
 
-void Player::sauter() {
+void Joueur::sauter() {
 
 }
 
-void Player::accroupir() {
+void Joueur::accroupir() {
 
+}
+
+Joueur::Joueur() {
+    classe="Stickman";
+    defense = 10;
+    pointsDeVie = 100;
+    vitesse = 20;
+    degatsAttaque = 30;
+    chanceCritique = 10;
+    bonusCritique = 50;
 }
