@@ -13,8 +13,13 @@ private:
 public:
     Jeu();
     void initialiser(std::string classe);
-    std::vector<std::vector<int>> getTerrain();
+    std::vector<std::vector<Case>> getTerrain();
     void getDim(int &dimX, int &dimY);
+    void avancerJoueur();
+    void reculerJoueur();
+    bool attaque();
+    bool monstreProche();
+    int getPV();
 };
 
 

@@ -16,14 +16,16 @@ void Niveau::loadLevel(const std::string& filename) {
     std::string line;
     int i=0;
     while (std::getline(file, line)) {
-        std::vector<int> row;
+        std::vector<Case> row;
         for (char c : line) {
             if (c == '.') {
-                row.push_back(0); // rien
+                row.push_back(vide); // rien
             } else if (c == 'X') {
-                row.push_back(1); // Mur
+                row.push_back(mur); // Mur
             } else if (c == 'M') {
-                row.push_back(2); // Monstre
+                row.push_back(monstre); // Monstre
+            } else if (c == 'J') {
+                row.push_back(joueur); // Monstre
             }
             // faire autres conditions
         }
@@ -42,11 +44,37 @@ bool Niveau::getCaseSolide(int posX, int posY) const {
     return terrain[posX][posY]==1;
 }
 
-std::vector<std::vector<int>> Niveau::getTerrain() {
+std::vector<std::vector<Case>> Niveau::getTerrain() {
     return terrain;
 }
 
 void Niveau::getDim(int &dimX, int &dimY) {
     dimX = this->dimX;
     dimY = this->dimY;
+}
+
+void Niveau::deplacerCase(int depuisPosX, int depuisPosY, int versPosX, int versPosY) {
+    Case temp;
+    temp = terrain[depuisPosX][depuisPosY];
+    terrain[depuisPosX][depuisPosY] = terrain[versPosX][versPosY];
+    terrain[versPosX][versPosY] = temp;
+}
+
+void Niveau::getPosJoueur(int& posX, int& posY) {
+    for(int i=0; i < terrain.size() ; i++) {
+        for (int j = 0; j < terrain[i].size(); j++) {
+            if(terrain[i][j]==joueur) {
+                posX=i;
+                posY=j;
+            }
+        }
+    }
+}
+
+Case Niveau::getCase(int posX, int posY) {
+    return terrain[posX][posY];
+}
+
+void Niveau::tuerMonstre(int posX, int posY) {
+    if(terrain[posX][posY]==monstre) terrain[posX][posY]=vide;
 }

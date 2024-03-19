@@ -18,11 +18,13 @@ public:
     Joueur(std::string classe);
     // Getters stats
     int getDefense() const;
-    int getPointsDeVie() const;
+    int getPV() const;
     int getVitesse() const;
     int getDegatsAttaque() const;
     int getChanceCritique() const;
     int getBonusCritique() const;
+
+    void setPV(int pv);
 
     void avancer();
 

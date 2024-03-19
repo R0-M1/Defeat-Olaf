@@ -21,13 +21,26 @@ void JeuModeTexte::start() {
 
 void JeuModeTexte::boucleJeu() {
     start();
-    std::string mouvement;
+    std::string input;
     do {
+        if(jeu.monstreProche()) {
+            do {
+                std::cout << "Ennemi en face de toi ! Veux tu l'(A)ttaquer ⚔  ou (F)uir ⚐"<<std::endl;
+                std::cin >> input;
+            } while (input != "A" && input != "F");
+            if (input == "A") {
+                if (jeu.attaque()) std::cout << "Bravo ! Vous avez tuer le monstre !" << std::endl;
+                else std::cout << "Aie ! Vous avez perdu 10 points de vie" << std::endl;
+            }
+        }
+
         afficheNiveau();
-        std::cout<<"Quel mouvement voulez vous faire ? (0 pour quitter)"<<std::endl;
-        std::cin>>mouvement;
-        //if(mouvement=="q")
-    } while(mouvement!="0");
+
+        std::cout<<std::endl<<"Quel mouvement voulez vous faire ? (0 pour quitter)    ◀ Q • D ▶"<<std::endl;
+        std::cin>>input;
+        if(input=="q") jeu.reculerJoueur();
+        if(input=="d") jeu.avancerJoueur();
+    } while(input!="0");
 }
 
 JeuModeTexte::JeuModeTexte() {
@@ -37,18 +50,25 @@ JeuModeTexte::JeuModeTexte() {
 void JeuModeTexte::afficheNiveau() {
     int dimX;
     int dimY;
-    std::vector<std::vector<int>> terrain = jeu.getTerrain();
+    std::vector<std::vector<Case>> terrain = jeu.getTerrain();
     jeu.getDim(dimX, dimY);
 
     for(int i=0; i < dimY; i++) {
         for(int j=0; j<dimX; j++) {
-            if(terrain[i][j]==0) std::cout<<" ";
-            if(terrain[i][j]==1) std::cout<<"█";
-            if(terrain[i][j]==2) std::cout<<"⬜";
+            if(terrain[i][j]==monstre) {
+                std::cout<<"🐅";
+                j=j+2;
+            }
+            else if(terrain[i][j]==joueur) {
+                std::cout<<"🧍‍♂️";
+                j++;
+            }
+            else if(terrain[i][j]==mur) std::cout<<"█";
+            else if(terrain[i][j]==vide) std::cout<<" ";
+
         }
         std::cout<<std::endl;
     }
 
-
-
+    std::cout<<"Points de Vie : "<<jeu.getPV()<<"❤"<<std::endl;
 }
