@@ -11,8 +11,6 @@ void Niveau::loadLevel(const std::string& filename) {
         return;
     }
 
-
-
     std::string line;
     int i=0;
     while (std::getline(file, line)) {
