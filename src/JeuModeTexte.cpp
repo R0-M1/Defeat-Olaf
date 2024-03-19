@@ -24,6 +24,7 @@ void JeuModeTexte::boucleJeu() {
     std::string input;
     do {
         if(jeu.monstreProche()) {
+            afficheNiveau();
             do {
                 std::cout << "Ennemi en face de toi ! Veux tu l'(A)ttaquer ⚔  ou (F)uir ⚐"<<std::endl;
                 std::cin >> input;
@@ -52,19 +53,22 @@ void JeuModeTexte::afficheNiveau() {
     int dimY;
     std::vector<std::vector<Case>> terrain = jeu.getTerrain();
     jeu.getDim(dimX, dimY);
-
     for(int i=0; i < dimY; i++) {
         for(int j=0; j<dimX; j++) {
-            if(terrain[i][j]==monstre) {
+            if(terrain[i][j]==vide) std::cout<<" ";
+            else if(terrain[i][j]==mur) std::cout<<"█";
+            else if(terrain[i][j]==joueur) {
+                std::cout<<"🧍‍♂️";
+                if(terrain[i][j+1]==monstre) {
+                    std::cout << "🐅";
+                    j = j + 2;
+                }
+                j++;
+            }
+            else if(terrain[i][j]==monstre) {
                 std::cout<<"🐅";
                 j=j+2;
             }
-            else if(terrain[i][j]==joueur) {
-                std::cout<<"🧍‍♂️";
-                j++;
-            }
-            else if(terrain[i][j]==mur) std::cout<<"█";
-            else if(terrain[i][j]==vide) std::cout<<" ";
 
         }
         std::cout<<std::endl;

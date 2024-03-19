@@ -1,4 +1,5 @@
 #include "Jeu.h"
+#include "time.h"
 
 void Jeu::initialiser(std::string classe) {
     Joueur tempJoueur(classe);
@@ -32,14 +33,18 @@ void Jeu::reculerJoueur() {
 }
 
 bool Jeu::attaque() {
+    srand(time(NULL));
     if(rand()%10<6) { //pourcentage de chance de gagner le combat
         int posX, posY;
         donjon[numeroDonjon].getPosJoueur(posX, posY);
-        if(donjon[numeroDonjon].getCase(posX, posY - 1) == monstre) donjon[numeroDonjon].tuerMonstre(posX, posY - 1);
-        if(donjon[numeroDonjon].getCase(posX, posY + 1) == monstre) donjon[numeroDonjon].tuerMonstre(posX, posY + 1);
-        if(donjon[numeroDonjon].getCase(posX - 1, posY) == monstre) donjon[numeroDonjon].tuerMonstre(posX - 1, posY);
-        if(donjon[numeroDonjon].getCase(posX + 1, posY) == monstre) donjon[numeroDonjon].tuerMonstre(posX + 1, posY);
-
+        if(donjon[numeroDonjon].getCase(posX, posY - 1) == monstre) {
+            donjon[numeroDonjon].tuerMonstre(posX, posY - 1);
+            donjon[numeroDonjon].deplacerCase(posX, posY, posX, posY-1);
+        }
+        if(donjon[numeroDonjon].getCase(posX, posY + 1) == monstre) {
+            donjon[numeroDonjon].tuerMonstre(posX, posY + 1);
+            donjon[numeroDonjon].deplacerCase(posX, posY, posX, posY+1);
+        }
         return true;
     }
     joueur.setPV(joueur.getPV()-10);
@@ -50,11 +55,11 @@ bool Jeu::monstreProche() {
     int posX, posY;
     donjon[numeroDonjon].getPosJoueur(posX, posY);
     if(     donjon[numeroDonjon].getCase(posX, posY - 1) == monstre||
-            donjon[numeroDonjon].getCase(posX, posY + 1) == monstre||
-            donjon[numeroDonjon].getCase(posX - 1, posY) == monstre||
-            donjon[numeroDonjon].getCase(posX + 1, posY) == monstre) {
+            donjon[numeroDonjon].getCase(posX, posY + 1 ) == monstre) {
         return true;
     }
+
+
     return false;
 }
 

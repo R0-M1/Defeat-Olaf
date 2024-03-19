@@ -1,7 +1,7 @@
 #include "Donjon.h"
 
 void Donjon::commencer(int numeroDonjon) {
-    niveau[numeroNiveau].loadLevel("C:\\Users\\Romain\\CLionProjects\\Defeat-Olaf\\src\\level.txt");
+    niveau[numeroNiveau].loadLevel("level.txt");
 }
 
 Donjon::Donjon() {
