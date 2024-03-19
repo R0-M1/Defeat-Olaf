@@ -29,7 +29,7 @@ int Joueur::getDefense() const {
     return defense;
 }
 
-int Joueur::getPointsDeVie() const {
+int Joueur::getPV() const {
     return pointsDeVie;
 }
 
@@ -73,4 +73,8 @@ Joueur::Joueur() {
     degatsAttaque = 30;
     chanceCritique = 10;
     bonusCritique = 50;
+}
+
+void Joueur::setPV(int pv) {
+    pointsDeVie=pv;
 }

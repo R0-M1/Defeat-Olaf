@@ -11,8 +11,12 @@ private:
 public:
     Donjon();
     void commencer(int numeroDonjon);
-    std::vector<std::vector<int>> getTerrain();
+    std::vector<std::vector<Case>> getTerrain();
     void getDim(int &dimX, int &dimY);
+    Case getCase(int posX, int posY);
+    void deplacerCase(int depuisPosX, int depuisPosY, int versPosX, int versPosY);
+    void getPosJoueur(int& posX, int& posY);
+    void tuerMonstre(int posX, int posY);
 };
 
 
