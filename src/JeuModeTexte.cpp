@@ -1,4 +1,5 @@
 #include "JeuModeTexte.h"
+#include "Windows.h"
 
 void JeuModeTexte::start() {
     std::cout<<"██████╗░███████╗███████╗███████╗░█████╗░████████╗░░░░░█████╗░██╗░░░░░░█████╗░███████╗"<<std::endl;
@@ -20,6 +21,7 @@ void JeuModeTexte::start() {
 }
 
 void JeuModeTexte::boucleJeu() {
+    SetConsoleOutputCP(CP_UTF8);
     start();
     std::string input;
     do {
